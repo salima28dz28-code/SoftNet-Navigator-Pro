@@ -3,3 +3,5 @@ project(':SoftNet_Navigator_Pro-java').projectDir = file('SoftNet_Navigator_Pro-
 project(':SoftNet_Navigator_Pro-api').projectDir = file('SoftNet_Navigator_Pro-api')
 project(':SoftNet_Navigator_Pro-shared').projectDir = file('SoftNet_Navigator_Pro-shared')
 project(':SoftNet_Navigator_Pro').projectDir = file('SoftNet_Navigator_Pro')
+include ':SoftNet_Navigator_Pro-telegram'
+project(':SoftNet_Navigator_Pro-telegram').projectDir = file('SoftNet_Navigator_Pro-telegram')

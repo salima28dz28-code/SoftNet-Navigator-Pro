@@ -128,7 +128,7 @@ publishing {
 }
 
 dependencies {
-	implementation project(path:':SoftNet_Navigator_Pro-shared', configuration : gradle.ext.java_shared_conf)
+	implementation project(':SoftNet_Navigator_Pro-shared')
 
 	testImplementation 'junit:junit:4.12'
 	testImplementation 'org.hamcrest:hamcrest-core:1.3'
