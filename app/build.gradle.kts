@@ -23,9 +23,9 @@ android {
     signingConfigs {
         create("release") {
             storeFile = file("Softnet_Navigator_Pro.keystore")
-            storePassword = "password" // User should change this
-            keyAlias = "key0"          // User should change this
-            keyPassword = "password"   // User should change this
+            storePassword = "SoFiAnE2020@"
+            keyAlias = "softnet"
+            keyPassword = "SoFiAnE2020@"
         }
     }
 
