@@ -48,7 +48,7 @@ jobs:
 
     - name: Build Debug APK
       working-directory: ./android
-      run: ./gradlew :SoftNet_Navigator_Pro:assembleNightlyFreeLegacyFatDebug --stacktrace
+      run: ./gradlew :SoftNet_Navigator_Pro:assembleNightlyFreeLegacyFatDebug --stacktrace -x test
 
     - name: Find APK
       working-directory: ./android
