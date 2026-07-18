@@ -374,10 +374,10 @@ tasks.register('appStart', Exec) {
 }
 
 dependencies {
-	implementation project(path: ':OsmAnd-java', configuration: 'android')
-	implementation project(':OsmAnd-api')
+	implementation project(path: ':SoftNet_Navigator_Pro-java', configuration: 'android')
+	implementation project(':SoftNet_Navigator_Pro-api')
 
-	implementation project(':OsmAnd-shared')
+	implementation project(':SoftNet_Navigator_Pro-shared')
 	implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 	implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 	implementation("androidx.sqlite:sqlite-framework:2.3.1")
