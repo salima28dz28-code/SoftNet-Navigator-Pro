@@ -20,6 +20,15 @@ android {
         }
     }
 
+    signingConfigs {
+        create("release") {
+            storeFile = file("Softnet_Navigator_Pro.keystore")
+            storePassword = "password" // User should change this
+            keyAlias = "key0"          // User should change this
+            keyPassword = "password"   // User should change this
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -27,6 +36,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("release")
         }
     }
     compileOptions {

@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("SoftNet Navigator Pro - Li Auto Edition")
+                    com.softnet.navigator.ui.screens.MapScreen()
                 }
             }
         }
