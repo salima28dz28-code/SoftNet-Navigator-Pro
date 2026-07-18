@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Core UI sizes scaled up for Li Auto L7 Max 15.7-inch screen -->
+    <dimen name="action_bar_height">80dp</dimen>
+    <dimen name="list_item_height">80dp</dimen>
+    <dimen name="wpt_list_item_height">84dp</dimen>
+    <dimen name="wpt_list_category_height">90dp</dimen>
+    <dimen name="title_text_size">40sp</dimen>
+    <dimen name="card_title_row_min_height">96dp</dimen>
+    <dimen name="card_row_min_height">72dp</dimen>
+    <dimen name="card_button_min_size">86dp</dimen>
+    <dimen name="dialog_button_height">56dp</dimen>
+    <dimen name="dialog_button_ex_height">90dp</dimen>
+    <dimen name="acceptable_touch_radius">72dp</dimen>
+
+    <!-- Map & Dashboard Adjustments for 16:9 Wide -->
+    <dimen name="dashboard_land_width">500dp</dimen>
+    <dimen name="dashboard_map_toolbar">80dp</dimen>
+
+    <!-- Miscellaneous -->
+    <dimen name="splash_icon_size">96dp</dimen>
+    <dimen name="drawer_width">400dp</dimen>
+    <dimen name="card_content_padding_large">40dp</dimen>
+    <dimen name="title_padding">28dp</dimen>
+</resources>

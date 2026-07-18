@@ -1,0 +1,67 @@
+name: Build SoftNet Navigator Pro - Debug APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ master, main ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout SoftNet_Navigator_Pro
+      uses: actions/checkout@v4
+      with:
+        path: android
+
+    - name: Checkout OsmAnd-resources
+      uses: actions/checkout@v4
+      with:
+        repository: osmandapp/OsmAnd-resources
+        path: resources
+
+    - name: Checkout OsmAnd-core-legacy
+      uses: actions/checkout@v4
+      with:
+        repository: osmandapp/OsmAnd-core-legacy
+        path: core-legacy
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+
+    - name: Grant execute permission for gradlew
+      working-directory: ./android
+      run: chmod +x gradlew
+
+    - name: Patch memory requirements
+      working-directory: ./android
+      run: |
+        printf "\norg.gradle.jvmargs=-Xmx4096m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8\n" >> gradle.properties
+        printf "org.gradle.daemon=false\n" >> gradle.properties
+
+    - name: Build Debug APK
+      working-directory: ./android
+      run: ./gradlew :SoftNet_Navigator_Pro:assembleNightlyFreeLegacyFatDebug --stacktrace
+
+    - name: Find APK
+      working-directory: ./android
+      run: find . -name "*.apk" -type f
+
+    - name: Get commit hash
+      id: commit
+      run: echo "hash=$(git -C android rev-parse --short HEAD 2>/dev/null || echo 'build')" >> $GITHUB_OUTPUT
+
+    - name: Upload Debug APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: SoftNet-Navigator-Pro-debug-${{ steps.commit.outputs.hash }}
+        path: android/SoftNet_Navigator_Pro/build/outputs/apk/**/*.apk
+        retention-days: 30
+        if-no-files-found: warn

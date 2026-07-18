@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Scaled up for 15.7 inch 3K car display -->
+    <dimen name="first_usage_title_margin">200dp</dimen>
+    <dimen name="first_usage_title_margin_bottom">80dp</dimen>
+    <dimen name="first_usage_title_text_size">72sp</dimen>
+    <dimen name="first_usage_subtitle_text_size">28sp</dimen>
+
+    <dimen name="quick_action_widget_height_big">280dp</dimen>
+    <dimen name="quick_action_widget_height_small">140dp</dimen>
+
+    <dimen name="context_img_card_width">400dp</dimen>
+    <dimen name="context_img_card_height">240dp</dimen>
+
+    <dimen name="backup_icons_view_height">220dp</dimen>
+</resources>
