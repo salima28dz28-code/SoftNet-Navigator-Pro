@@ -14,14 +14,8 @@ jobs:
     timeout-minutes: 60
 
     steps:
-    - name: Checkout SoftNet_Navigator_Pro
+    - name: Checkout repository
       uses: actions/checkout@v4
-
-    - name: Checkout OsmAnd-resources
-      uses: actions/checkout@v4
-      with:
-        repository: osmandapp/OsmAnd-resources
-        path: ../resources
 
     - name: Set up JDK 17
       uses: actions/setup-java@v4
@@ -43,22 +37,26 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
 
-    - name: Create stub resource directories
+    - name: Create required stub resource directories
       run: |
+        # Create the resources directory structure expected by build scripts
         mkdir -p ../resources/voice
         mkdir -p ../resources/rendering_styles/fonts
-        mkdir -p ../resources/bundled_assets.json
         mkdir -p ../resources/proj
         mkdir -p ../resources/color-palette
-        mkdir -p ../resources/poi_categories.json
         mkdir -p ../resources/routing
         mkdir -p ../resources/obf_creation
         mkdir -p ../resources/poi
         mkdir -p ../resources/rendering_styles
-        touch ../resources/bundled_assets.json
-        touch ../resources/poi/poi_types.xml
-        touch ../resources/poi/activities.json
+        mkdir -p ../resources/test-resources/search
+        mkdir -p ../resources/test-resources/routing
+        mkdir -p ../resources/test-resources/approximation
+        # Create empty stub files
+        echo '{}' > ../resources/bundled_assets.json
+        echo '<resources/>' > ../resources/poi/poi_types.xml
+        echo '{}' > ../resources/poi/activities.json
         touch ../resources/proj/proj.db
+        echo '<resources/>' > ../resources/obf_creation/rendering_types.xml
 
     - name: Patch gradle.properties
       run: |
@@ -68,7 +66,7 @@ jobs:
         printf "org.gradle.caching=true\n" >> gradle.properties
         printf "osmandCoreSimple=true\n" >> gradle.properties
 
-    - name: Build Debug APK (NightlyFree Legacy Fat)
+    - name: Build Debug APK
       run: |
         ./gradlew :SoftNet_Navigator_Pro:assembleNightlyFreeLegacyFatDebug \
           --no-daemon \
@@ -83,7 +81,7 @@ jobs:
           -x :SoftNet_Navigator_Pro-java:collectRegionsInfoResources \
           -x :SoftNet_Navigator_Pro-java:collectTestResources \
           -x :SoftNet_Navigator_Pro-java:collectTestPhrasesResources \
-          2>&1 | tail -200
+          2>&1 | tail -300
 
     - name: Find APK
       run: find . -name "*.apk" -type f 2>/dev/null || echo "No APK found"
