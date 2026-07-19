@@ -9,7 +9,6 @@
     <string name="u_turn">استدر</string>
     <string name="destination_reached">وصلت إلى وجهتك</string>
     <string name="route_recalculating">إعادة حساب المسار</string>
-    <string name="about_osmand">عن SoftNet Navigator Pro</string>
     <string name="help_article_start_with_name">ابدأ مع SoftNet Navigator Pro</string>
     <string name="recording_context_menu_show">أظهر</string>
     <string name="av_def_action_picture">التقط صورة</string>
@@ -4101,7 +4100,6 @@
     <string name="help_article_personal_import_export_name">استيراد / تصدير</string>
     <string name="free_versions">إصدارمجاني</string>
     <string name="help_article_search_search_coordinates_name">بحث عن الإحداثيات</string>
-    <string name="about_osmand">حول أوسماند</string>
     <string name="help_article_personal_profiles_name">إعدادات الملف الشخصي</string>
     <string name="help_article_purchases_android_name">مشتريات أندرويد</string>
     <string name="help_article_search_search_poi_name">بحث نقاط الاهتمام</string>
