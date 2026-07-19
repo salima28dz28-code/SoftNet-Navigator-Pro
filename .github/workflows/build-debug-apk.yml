@@ -39,7 +39,6 @@ jobs:
 
     - name: Create required stub resource directories
       run: |
-        # Create the resources directory structure expected by build scripts
         mkdir -p ../resources/voice
         mkdir -p ../resources/rendering_styles/fonts
         mkdir -p ../resources/proj
@@ -51,7 +50,6 @@ jobs:
         mkdir -p ../resources/test-resources/search
         mkdir -p ../resources/test-resources/routing
         mkdir -p ../resources/test-resources/approximation
-        # Create empty stub files
         echo '{}' > ../resources/bundled_assets.json
         echo '<resources/>' > ../resources/poi/poi_types.xml
         echo '{}' > ../resources/poi/activities.json
@@ -70,7 +68,7 @@ jobs:
       run: |
         ./gradlew :SoftNet_Navigator_Pro:assembleNightlyFreeLegacyFatDebug \
           --no-daemon \
-          --stacktrace \
+          --info \
           -x test \
           -x lint \
           -x validateTranslations \
@@ -80,20 +78,27 @@ jobs:
           -x collectVoiceAssets \
           -x :SoftNet_Navigator_Pro-java:collectRegionsInfoResources \
           -x :SoftNet_Navigator_Pro-java:collectTestResources \
-          -x :SoftNet_Navigator_Pro-java:collectTestPhrasesResources \
-          2>&1 | tail -300
+          -x :SoftNet_Navigator_Pro-java:collectTestPhrasesResources
 
-    - name: Find APK
-      run: find . -name "*.apk" -type f 2>/dev/null || echo "No APK found"
+    - name: Find all APK files
+      run: |
+        echo "=== Searching for APK files ==="
+        find . -name "*.apk" -type f 2>/dev/null
+        echo "=== Build output directory ==="
+        find . -path "*/build/outputs*" -type f 2>/dev/null | head -30
+        echo "=== Listing SoftNet_Navigator_Pro/build ==="
+        ls -la SoftNet_Navigator_Pro/build/outputs/apk/ 2>/dev/null || echo "APK output dir not found"
 
     - name: Get commit hash
       id: commit
-      run: echo "hash=$(git rev-parse --short HEAD 2>/dev/null || echo 'build')" >> $GITHUB_OUTPUT
+      run: echo "hash=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
 
     - name: Upload Debug APK
       uses: actions/upload-artifact@v4
       with:
         name: SoftNet-Navigator-Pro-debug-${{ steps.commit.outputs.hash }}
-        path: SoftNet_Navigator_Pro/build/outputs/apk/**/*.apk
+        path: |
+          SoftNet_Navigator_Pro/build/outputs/apk/**/*.apk
+          **/build/outputs/apk/**/*.apk
         retention-days: 30
         if-no-files-found: warn
