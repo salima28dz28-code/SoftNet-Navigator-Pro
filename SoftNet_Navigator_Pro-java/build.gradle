@@ -45,7 +45,7 @@ tasks.register('collectRegionsInfoResources', Download) {
 
 tasks.register('collectTestPhrasesResources', Copy) {
 	into "src/test/resources/phrases/en/"
-	from("../OsmAnd/res/values") {
+	from("../SoftNet_Navigator_Pro/res/values") {
 		include "phrases.xml"
 	}
 }
